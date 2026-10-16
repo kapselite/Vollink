@@ -1,5 +1,5 @@
+import React from 'react';
 import { Navbar } from './components/Navbar';
-import { Footer } from './components/Footer';
 import { AboutUs } from './pages/AboutUs';
 
 export function App() {
@@ -12,9 +12,6 @@ export function App() {
       <main className="flex-grow">
         <AboutUs />
       </main>
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }
