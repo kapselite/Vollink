@@ -14,6 +14,8 @@ import type { Variants } from 'framer-motion';
 import { Marquee } from '../components/Marquee';
 import { PrinterShowcase } from '../components/PrinterShowcase';
 import logo from '../assets/logo.png';
+import { categories, categoryHref } from '../data/services';
+import { phoneDisplay, phoneNumber, salesEmail, whatsappLink } from '../data/contact';
 
 type Category = 'Print & Design' | 'Technology';
 
@@ -36,12 +38,14 @@ interface Reason {
   description: string;
 }
 
-const phoneNumber = '263773732447';
-const phoneDisplay = '+263 773 732 447';
-const salesEmail = 'sales@vollink.co.zw';
-
-const whatsappLink = (message: string) =>
-  `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+// Link to a service's section on its Printing & Design or Technology page
+const detailHref = (title: string) => {
+  for (const category of categories) {
+    const match = category.services.find((s) => s.title === title);
+    if (match) return categoryHref(category.id, match.slug);
+  }
+  return '#services';
+};
 
 const rotatingWords = ['Printing', 'Signage', 'Branding', 'Graphic Design', 'IT Solutions'];
 
@@ -284,15 +288,25 @@ const ServiceCard: React.FC<{ service: Service }> = ({ service }) => {
         ))}
       </div>
 
-      <a
-        href={whatsappLink(`Hi Vollink, I'm interested in ${service.title}.`)}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="relative mt-auto inline-flex items-center gap-2 text-sm font-bold text-[#f60400] hover:gap-3 transition-all duration-200"
-      >
-        Ask about this
-        <Icon paths={arrowIcon} className="w-4 h-4" />
-      </a>
+      <div className="relative mt-auto flex items-center justify-between gap-3">
+        <a
+          href={detailHref(service.title)}
+          className="inline-flex items-center gap-2 text-sm font-bold text-[#3c319f] hover:gap-3 transition-all duration-200"
+        >
+          Learn more
+          <Icon paths={arrowIcon} className="w-4 h-4" />
+        </a>
+        <a
+          href={whatsappLink(`Hi Vollink, I'm interested in ${service.title}.`)}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Ask about ${service.title} on WhatsApp`}
+          className="inline-flex items-center gap-1.5 text-xs font-bold text-[#f60400] hover:underline"
+        >
+          <Icon paths={chatIcon} className="w-4 h-4" />
+          Ask us
+        </a>
+      </div>
     </motion.div>
   );
 };
