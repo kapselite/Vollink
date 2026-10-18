@@ -5,6 +5,7 @@ import logoImage from '../assets/logo.png'; // Correct default import for image 
 interface NavLink {
   name: string;
   href: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void; // Added onClick support
 }
 
 interface NavbarProps {
@@ -64,6 +65,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Brand Logo with Image Asset & 3D Tilt Effect */}
           <motion.a
             href="#"
+            onClick={(e) => {
+              const homeLink = links.find(l => l.name === 'Home');
+              if (homeLink && homeLink.onClick) {
+                homeLink.onClick(e);
+              }
+            }}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
@@ -96,22 +103,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                 )}
               </div>
             </div>
-
-            <div className="flex flex-col">
-              <span className="text-2xl font-black tracking-tight text-[#3c319f] drop-shadow-sm flex items-center gap-1">
-                {brandName}
-                <motion.span 
-                  animate={{ scale: [1, 1.4, 1], opacity: [1, 0.7, 1] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                  className="text-[#f60400]"
-                >
-                  .
-                </motion.span>
-              </span>
-              <span className="text-[10px] uppercase tracking-widest font-bold text-[#00a5d8]">
-                (Pvt) Ltd
-              </span>
-            </div>
+            <span className="text-xl font-extrabold bg-gradient-to-r from-[#3c319f] to-[#00a5d8] bg-clip-text text-transparent">
+              {brandName}
+            </span>
           </motion.a>
 
           {/* Desktop Colorful Capsule Navigation with Floating Particles */}
@@ -120,6 +114,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <motion.a
                 key={link.name}
                 href={link.href}
+                onClick={link.onClick}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: idx * 0.1 }}
@@ -138,6 +133,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           <div className="hidden md:flex items-center">
             <motion.a
               href="#contact"
+              onClick={(e) => {
+                const contactLink = links.find(l => l.name === 'Contact');
+                if (contactLink && contactLink.onClick) {
+                  contactLink.onClick(e);
+                }
+              }}
               animate={{ 
                 boxShadow: [
                   '0 10px 20px -5px rgba(0, 165, 216, 0.3)', 
@@ -195,10 +196,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               <motion.a
                 key={link.name}
                 href={link.href}
+                onClick={(e) => {
+                  setIsOpen(false);
+                  if (link.onClick) link.onClick(e);
+                }}
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: idx * 0.05 }}
-                onClick={() => setIsOpen(false)}
                 whileTap={{ scale: 0.98 }}
                 className="block px-5 py-3.5 rounded-2xl text-base font-bold text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-[#3c319f] hover:to-[#00a5d8] transition-all duration-300 shadow-sm"
               >
@@ -209,7 +213,11 @@ export const Navbar: React.FC<NavbarProps> = ({
               <motion.a
                 href="#contact"
                 whileTap={{ scale: 0.98 }}
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => {
+                  setIsOpen(false);
+                  const contactLink = links.find(l => l.name === 'Contact');
+                  if (contactLink && contactLink.onClick) contactLink.onClick(e);
+                }}
                 className="block text-center w-full py-3.5 rounded-2xl text-base font-extrabold text-white bg-gradient-to-r from-[#3c319f] via-[#00a5d8] to-[#f60400] shadow-xl shadow-cyan-500/25"
               >
                 Get in Touch
