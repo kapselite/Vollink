@@ -1,6 +1,5 @@
+import React from 'react';
 import { Navbar } from './components/Navbar';
-import { Footer } from './components/Footer';
-import { Home } from './pages/Home';
 import { AboutUs } from './pages/AboutUs';
 
 export function App() {
@@ -18,9 +17,6 @@ export function App() {
           <AboutUs />
         </section>
       </main>
-
-      {/* Footer */}
-      <Footer />
     </div>
   );
 }
