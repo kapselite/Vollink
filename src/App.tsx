@@ -8,9 +8,14 @@ export function App() {
       {/* Navigation Bar */}
       <Navbar brandName="Vollink" />
 
-      {/* About Us Section / Page */}
       <main className="flex-grow">
-        <AboutUs />
+        {/* Home / Landing Page */}
+        <Home />
+
+        {/* About Us Section / Page */}
+        <section id="about" className="scroll-mt-16">
+          <AboutUs />
+        </section>
       </main>
     </div>
   );
