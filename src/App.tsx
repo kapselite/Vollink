@@ -2,33 +2,29 @@ import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { AboutUs } from './pages/AboutUs';
+import { ContactPage as Contact } from './pages/Contacts';
 import { Home } from './pages/Home';
 
-// Example Home Component (Replace or keep your landing page content here)
-
-
 export function App() {
-  // State to track the active view/page ('home' is set as the default initial view)
+  // State to track the active view/page ('home' is set as default)
   const [currentView, setCurrentView] = useState<'home' | 'about' | 'services' | 'contact'>('home');
 
   // Custom link click handler to switch views seamlessly
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
     if (href === '#about') {
-      e.preventDefault();
       setCurrentView('about');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (href === '#contact') {
+      setCurrentView('contact');
     } else if (href === '#' || href === '#home') {
-      e.preventDefault();
       setCurrentView('home');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (href === '#services') {
-      e.preventDefault();
-      setCurrentView('home'); // or switch to a services view if you have one
-      // scroll to services section if on home
+      setCurrentView('home'); // or switch to a dedicated services view
     }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Pass custom links with click handlers to the Navbar
+  // Custom links with click handlers passed to Navbar
   const customLinks = [
     { name: 'Home', href: '#', onClick: (e: any) => handleNavClick(e, '#') },
     { name: 'Services', href: '#services', onClick: (e: any) => handleNavClick(e, '#services') },
@@ -37,22 +33,26 @@ export function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      {/* Navigation Bar with view-switching links */}
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col">
+      {/* Navigation Bar */}
       <Navbar brandName="Vollink" links={customLinks} />
 
       <main className="flex-grow">
-        {/* Render Home Page by default */}
+        {/* Render Home Page */}
         {currentView === 'home' && <Home />}
 
-        {/* Render About Page when 'About' is clicked */}
+        {/* Render About Page */}
         {currentView === 'about' && (
           <section className="py-10">
             <AboutUs />
           </section>
         )}
+
+        {/* Render Contact Page */}
+        {currentView === 'contact' && <Contact />}
       </main>
-      <Footer/>
+
+      <Footer />
     </div>
   );
 }

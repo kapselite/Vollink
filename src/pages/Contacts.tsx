@@ -1,1290 +1,504 @@
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { 
+  MapPin, 
+  Phone, 
+  Mail, 
+  Send, 
+  CheckCircle2, 
+  Printer, 
+  Wrench, 
+  ShoppingBag, 
+  MessageSquare,
+  Clock,
+  Sparkles,
+  Zap,
+  MessageCircle,
+  ExternalLink,
+  ShieldCheck,
+  Terminal,
+  Cpu
+} from 'lucide-react';
 
-/* =========================================
-   VoLLiink CONTACT PAGE
-   Brand colours:
-   Deep Blue: #3C319F
-   Bright Red: #F60400
-   Cyan Blue: #00A5D8
-========================================= */
-
-.contact-page {
-  --deep-blue: #3C319F;
-  --bright-red: #F60400;
-  --cyan-blue: #00A5D8;
-  --navy: #031333;
-  --navy-light: #071d42;
-  --text-light: #f6f8ff;
-  --muted-light: #c3d2ed;
-
-  width: 100%;
-  min-height: 100vh;
-  overflow: clip;
-  color: var(--text-light);
-  background: var(--navy);
-  font-family: Inter, "Segoe UI", Arial, sans-serif;
+interface ContactDepartment {
+  title: string;
+  email: string;
+  icon: React.ReactNode;
+  badgeColor: string;
 }
 
-.contact-page *,
-.contact-page *::before,
-.contact-page *::after {
-  box-sizing: border-box;
+interface WhatsAppAction {
+  label: string;
+  message: string;
+  badge: string;
 }
 
-.contact-page a {
-  color: inherit;
-}
+export const ContactPage: React.FC = () => {
+  const [submitted, setSubmitted] = useState<boolean>(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: 'General Inquiry',
+    message: '',
+  });
 
-.contact-page a:focus-visible,
-.contact-page button:focus-visible,
-.contact-page input:focus-visible,
-.contact-page select:focus-visible,
-.contact-page textarea:focus-visible {
-  outline: 3px solid var(--cyan-blue);
-  outline-offset: 4px;
-}
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 5000);
+  };
 
-.contact-page button,
-.contact-page input,
-.contact-page select,
-.contact-page textarea {
-  font: inherit;
-}
+  const whatsappNumber = "+263773732447";
 
-.contact-page button {
-  cursor: pointer;
-}
+  const whatsappActions: WhatsAppAction[] = [
+    {
+      label: 'General Tech Support',
+      message: 'Hello VoLLink Team, I need assistance with your technology services.',
+      badge: 'Fast Response',
+    },
+    {
+      label: 'Printing Instant Quote',
+      message: 'Hi! I would like to request an instant quote for printing services.',
+      badge: 'Print Desk',
+    },
+    {
+      label: 'Design & Branding Inquiry',
+      message: 'Hello! I am looking for custom graphic design and digital branding.',
+      badge: 'Design Lab',
+    },
+  ];
 
-/* NAVIGATION */
+  const departments: ContactDepartment[] = [
+    {
+      title: 'Sales & General',
+      email: 'sales@vollink.co.zw',
+      icon: <ShoppingBag className="w-5 h-5 text-blue-600" />,
+      badgeColor: 'bg-blue-100 text-blue-700 border-blue-200',
+    },
+    {
+      title: 'Printing Services',
+      email: 'printing@vollink.co.zw',
+      icon: <Printer className="w-5 h-5 text-red-600" />,
+      badgeColor: 'bg-red-100 text-red-700 border-red-200',
+    },
+    {
+      title: 'Repairs & Tech Support',
+      email: 'repairs@vollink.co.zw',
+      icon: <Wrench className="w-5 h-5 text-cyan-600" />,
+      badgeColor: 'bg-cyan-100 text-cyan-700 border-cyan-200',
+    },
+    {
+      title: 'Alternative Contact',
+      email: 'vollinksales@gmail.com',
+      icon: <Mail className="w-5 h-5 text-slate-600" />,
+      badgeColor: 'bg-slate-100 text-slate-700 border-slate-200',
+    },
+  ];
 
-.contact-navbar {
-  min-height: 76px;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 28px;
-  padding: 12px 6.5%;
-  background: rgba(3, 19, 51, 0.96);
-  border-bottom: 1px solid rgba(0, 165, 216, 0.65);
-  backdrop-filter: blur(16px);
-}
+  return (
+    <div className="relative min-h-screen bg-slate-50 text-slate-800 overflow-hidden font-sans pt-12 pb-24 px-4 sm:px-6 lg:px-8">
+      
+      {/* ================= DYNAMIC TECH BACKGROUND ANIMATIONS ================= */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <motion.div
+          animate={{
+            backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: 'linear',
+          }}
+          className="absolute inset-0 opacity-40 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-200/50 via-rose-100/30 to-slate-50 bg-[length:200%_200%]"
+        />
 
-.contact-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-  text-decoration: none;
-}
+        {/* Dynamic Moving Tech Mesh Grid */}
+        <motion.div 
+          animate={{
+            backgroundPosition: ['0px 0px', '36px 36px'],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: 'linear',
+          }}
+          className="absolute inset-0 opacity-[0.06]" 
+          style={{
+            backgroundImage: `radial-gradient(#2563eb 1.5px, transparent 1.5px), radial-gradient(#ef4444 1.5px, transparent 1.5px)`,
+            backgroundSize: '36px 36px',
+            backgroundPosition: '0 0, 18px 18px',
+          }}
+        />
 
-.brand-mark {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  color: #fff;
-  font-size: 32px;
-  font-weight: 900;
-  line-height: 1;
-}
+        {/* Floating Glowing Color Orbs */}
+        <motion.div
+          animate={{
+            x: [0, 90, -60, 0],
+            y: [0, -70, 50, 0],
+            scale: [1, 1.25, 0.85, 1],
+          }}
+          transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -top-20 -left-20 w-[30rem] h-[30rem] rounded-full bg-gradient-to-tr from-cyan-400/35 via-blue-400/30 to-indigo-300/20 blur-3xl"
+        />
 
-.brand-mark-v {
-  transform: skew(-9deg);
-}
+        <motion.div
+          animate={{
+            x: [0, -110, 80, 0],
+            y: [0, 80, -60, 0],
+            scale: [1, 0.9, 1.3, 1],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-1/3 -right-32 w-[34rem] h-[34rem] rounded-full bg-gradient-to-br from-rose-400/30 via-red-400/25 to-amber-200/20 blur-3xl"
+        />
 
-.brand-mark-dot {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  color: var(--cyan-blue);
-  font-size: 21px;
-  font-weight: 900;
-}
+        {/* Tech Light Particles */}
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0.2 }}
+            animate={{
+              y: [0, -100, 0],
+              opacity: [0.2, 0.7, 0.2],
+              scale: [1, 1.3, 1],
+            }}
+            transition={{
+              duration: 6 + i * 2,
+              repeat: Infinity,
+              ease: 'easeInOut',
+              delay: i * 0.8,
+            }}
+            className={`absolute rounded-full blur-[1px] pointer-events-none ${
+              i % 3 === 0 
+                ? 'w-3 h-3 bg-cyan-400/60 shadow-[0_0_12px_#06b6d4]' 
+                : i % 3 === 1 
+                ? 'w-4 h-4 bg-red-400/50 shadow-[0_0_14px_#ef4444]' 
+                : 'w-2.5 h-2.5 bg-blue-500/60 shadow-[0_0_10px_#3b82f6]'
+            }`}
+            style={{
+              top: `${15 + i * 14}%`,
+              left: `${10 + i * 15}%`,
+            }}
+          />
+        ))}
+      </div>
 
-.brand-word {
-  color: #fff;
-  font-size: clamp(21px, 2.4vw, 30px);
-  font-weight: 800;
-  letter-spacing: -1.3px;
-  white-space: nowrap;
-}
+      <div className="max-w-7xl mx-auto relative z-10">
+        
+        {/* ================= HEADER SECTION ================= */}
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: 'out' }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 border border-blue-200 text-blue-600 text-xs font-mono font-semibold uppercase tracking-wider mb-4 shadow-sm backdrop-blur-md"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-cyan-500 animate-pulse" />
+            <span>COMMUNICATIONS TERMINAL // VOLLINK</span>
+          </motion.div>
 
-.brand-word > span,
-.footer-logo > span {
-  color: var(--cyan-blue);
-}
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
+            Connect With Our{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-blue-600 to-cyan-500">
+              Tech & Creative Desk
+            </span>
+          </h1>
 
-.contact-navigation {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: clamp(18px, 3vw, 42px);
-}
+          <p className="mt-4 text-lg text-slate-600 leading-relaxed font-sans">
+            Reach out directly via our WhatsApp portal, departmental email channels, or drop us a message below.
+          </p>
+        </motion.div>
 
-.contact-navigation > a:not(.nav-contact-button) {
-  position: relative;
-  padding: 12px 0;
-  color: #e2eaff;
-  font-size: 14px;
-  font-weight: 650;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
+        {/* ================= TOP FEATURE: WHATSAPP DIRECT CONNECT PLATFORM ================= */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="mb-12 bg-slate-950 rounded-3xl p-6 sm:p-8 border border-emerald-500/30 shadow-2xl relative overflow-hidden text-white group"
+        >
+          {/* Cyber HUD Corner Accents */}
+          <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-emerald-400 rounded-tl-xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-cyan-400 rounded-tr-xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-blue-500 rounded-bl-xl pointer-events-none" />
+          <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-emerald-400 rounded-br-xl pointer-events-none" />
 
-.contact-navigation > a:not(.nav-contact-button)::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 4px;
-  width: 0;
-  height: 3px;
-  background: var(--cyan-blue);
-  border-radius: 5px;
-  transition: width 0.25s ease;
-}
+          {/* Background Tech Glow */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[35rem] h-[15rem] bg-emerald-500/10 blur-3xl rounded-full pointer-events-none" />
 
-.contact-navigation > a:not(.nav-contact-button):hover,
-.contact-navigation > a.nav-current {
-  color: white;
-}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center relative z-10">
+            {/* WhatsApp Header & Info */}
+            <div className="lg:col-span-5 space-y-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-semibold uppercase">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span>Live WhatsApp Dispatch</span>
+              </div>
 
-.contact-navigation > a:not(.nav-contact-button):hover::after,
-.contact-navigation > a.nav-current::after {
-  width: 100%;
-}
+              <h2 className="text-2xl sm:text-3xl font-extrabold flex items-center gap-3 tracking-tight">
+                <MessageCircle className="w-8 h-8 text-emerald-400" />
+                WhatsApp Us Directly
+              </h2>
 
-.nav-contact-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 12px 20px;
-  border-radius: 11px;
-  background: var(--bright-red);
-  color: #fff;
-  font-size: 14px;
-  font-weight: 750;
-  text-decoration: none;
-  box-shadow: 0 5px 20px rgba(246, 4, 0, 0.2);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
+              <p className="text-slate-400 text-sm leading-relaxed">
+                Connect instantly with our support desk on WhatsApp for immediate technical queries, quote requests, or job status updates.
+              </p>
 
-.nav-contact-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(246, 4, 0, 0.35);
-}
+              <div className="pt-2 flex items-center gap-3 text-xs font-mono text-slate-400">
+                <span className="flex items-center gap-1">
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                  Encrypted Channel
+                </span>
+                <span>•</span>
+                <span className="text-emerald-400 font-bold">{whatsappNumber}</span>
+              </div>
+            </div>
 
-.nav-contact-button span {
-  font-size: 19px;
-}
+            {/* WhatsApp Quick Action Triggers */}
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {whatsappActions.map((action) => {
+                const encodedMsg = encodeURIComponent(action.message);
+                const waUrl = `https://wa.me/${whatsappNumber.replace(/[^0-9]/g, '')}?text=${encodedMsg}`;
 
-/* MOBILE MENU BUTTON */
+                return (
+                  <motion.a
+                    key={action.label}
+                    href={waUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.03, y: -2 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="flex flex-col justify-between p-4 rounded-2xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500/60 hover:shadow-[0_0_20px_rgba(16,185,129,0.2)] transition-all group/item"
+                  >
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                          {action.badge}
+                        </span>
+                        <ExternalLink className="w-3.5 h-3.5 text-slate-500 group-hover/item:text-emerald-400 transition-colors" />
+                      </div>
+                      <div className="text-xs font-bold text-slate-200 group-hover/item:text-white transition-colors">
+                        {action.label}
+                      </div>
+                    </div>
 
-.contact-menu-toggle {
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  width: 44px;
-  height: 44px;
-  border: 1px solid rgba(0, 165, 216, 0.5);
-  border-radius: 10px;
-  background: rgba(0, 165, 216, 0.1);
-}
+                    <div className="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] font-mono text-emerald-400 group-hover/item:translate-x-1 transition-transform">
+                      <span>Launch Chat</span>
+                      <span>→</span>
+                    </div>
+                  </motion.a>
+                );
+              })}
+            </div>
+          </div>
+        </motion.div>
 
-.contact-menu-toggle span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  border-radius: 4px;
-  background: white;
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
+        {/* ================= MAIN CONTENT GRID ================= */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          {/* LEFT COLUMN: Physical Address & Department Contacts */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="lg:col-span-5 space-y-6"
+          >
+            {/* Primary HQ Card */}
+            <motion.div 
+              whileHover={{ y: -4, transition: { duration: 0.2 } }}
+              className="bg-white/85 backdrop-blur-xl border border-slate-200 p-6 rounded-3xl shadow-xl shadow-slate-200/50 relative overflow-hidden group hover:border-blue-400 transition-all"
+            >
+              <div className="absolute top-0 right-0 w-28 h-28 bg-gradient-to-bl from-blue-500/15 via-cyan-400/10 to-transparent rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform" />
+              
+              <h3 className="text-lg font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <MapPin className="w-5 h-5 text-red-500" />
+                Headquarters Address
+              </h3>
 
-.contact-menu-toggle.is-open span:first-child {
-  transform: translateY(7px) rotate(45deg);
-}
+              <div className="space-y-2 text-slate-600 text-sm leading-snug">
+                <p className="font-semibold text-slate-800">
+                  1st Floor, Suite 3, Security Trust House
+                </p>
+                <p className="text-slate-600">
+                  73 Kwame Nkrumah Avenue
+                </p>
+              </div>
 
-.contact-menu-toggle.is-open span:nth-child(2) {
-  opacity: 0;
-}
+              <div className="mt-6 pt-6 border-t border-slate-100 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="p-2.5 rounded-2xl bg-emerald-50 text-emerald-600 border border-emerald-200/80 shadow-sm">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-mono text-slate-600 uppercase block">Direct Line / WhatsApp</span>
+                    <a href="tel:+263773732447" className="text-sm font-bold text-slate-900 hover:text-blue-600 transition-colors">
+                      +263 773 732 447
+                    </a>
+                  </div>
+                </div>
+                <div className="hidden sm:flex items-center gap-1 text-[11px] font-mono text-emerald-700 bg-emerald-50/90 px-2.5 py-1 rounded-full border border-emerald-200">
+                  <Clock className="w-3 h-3" />
+                  <span>Mon-Fri 8am-5pm</span>
+                </div>
+              </div>
+            </motion.div>
 
-.contact-menu-toggle.is-open span:last-child {
-  transform: translateY(-7px) rotate(-45deg);
-}
+            {/* Department Emails Section */}
+            <div className="bg-white/85 backdrop-blur-xl border border-slate-200 p-6 rounded-3xl shadow-xl shadow-slate-200/50">
+              <h3 className="text-xs font-mono text-slate-600 uppercase tracking-wider mb-4 font-semibold flex items-center gap-2">
+                <Cpu className="w-4 h-4 text-cyan-500" />
+                Departmental Channels
+              </h3>
 
-/* HERO */
+              <div className="space-y-3">
+                {departments.map((dept) => (
+                  <motion.a
+                    key={dept.email}
+                    href={`mailto:${dept.email}`}
+                    whileHover={{ x: 6 }}
+                    transition={{ type: 'spring', stiffness: 300 }}
+                    className="flex items-center justify-between p-3 rounded-2xl bg-slate-50/80 hover:bg-white border border-slate-200/60 hover:border-slate-300 hover:shadow-md transition-all group"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 rounded-xl bg-white border border-slate-200 shadow-sm group-hover:scale-110 transition-transform">
+                        {dept.icon}
+                      </div>
+                      <div>
+                        <div className="text-xs font-semibold text-slate-800">{dept.title}</div>
+                        <div className="text-xs font-mono text-slate-600 group-hover:text-blue-600 transition-colors">
+                          {dept.email}
+                        </div>
+                      </div>
+                    </div>
+                    <span className={`text-[10px] font-mono px-2 py-0.5 rounded-md border ${dept.badgeColor}`}>
+                      Direct
+                    </span>
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+          </motion.div>
 
-.contact-hero {
-  position: relative;
-  display: flex;
-  align-items: center;
-  min-height: 325px;
-  padding: 46px 6.5%;
-  overflow: hidden;
-  isolation: isolate;
-  border-bottom: 1px solid rgba(0, 165, 216, 0.5);
-  background:
-    radial-gradient(
-      ellipse at 80% 20%,
-      rgba(0, 165, 216, 0.22),
-      transparent 48%
-    ),
-    linear-gradient(115deg, #031333 0%, #071d42 65%, #052752 100%);
-}
+          {/* RIGHT COLUMN: Transmission Message Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="lg:col-span-7"
+          >
+            <div className="bg-white/90 backdrop-blur-xl border border-slate-200 p-8 sm:p-10 rounded-3xl shadow-2xl shadow-slate-300/60 relative">
+              
+              <div className="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+                <div>
+                  <h2 className="text-2xl font-bold text-slate-900 flex items-center gap-2">
+                    <MessageSquare className="w-6 h-6 text-blue-600" />
+                    Transmit a Message
+                  </h2>
+                  <p className="text-sm text-slate-500 mt-1">
+                    Fill out the form below and our engineering & design team will get back to you within 24 hours.
+                  </p>
+                </div>
+                <div className="hidden sm:flex items-center gap-1 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-mono border border-slate-200">
+                  <Terminal className="w-3.5 h-3.5 text-cyan-500" />
+                  <span>v2.4 PORTAL</span>
+                </div>
+              </div>
 
-.hero-photo {
-  position: absolute;
-  z-index: -2;
-  inset: 0 0 0 40%;
-  background-image: url(
-    "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1600&q=85"
+              {submitted ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="p-8 rounded-2xl bg-emerald-50 border border-emerald-200 text-center space-y-3"
+                >
+                  <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
+                  <h3 className="text-xl font-bold text-emerald-900">Message Transmitted!</h3>
+                  <p className="text-sm text-emerald-700 max-w-md mx-auto">
+                    Thank you for contacting VoLLink. A member of our team will review your inquiry immediately.
+                  </p>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                      <label className="block text-xs font-mono uppercase text-slate-600 mb-1.5 font-semibold">
+                        Your Name
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder="John Doe"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 transition-all placeholder:text-slate-400"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-mono uppercase text-slate-600 mb-1.5 font-semibold">
+                        Email Address
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="john@example.com"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 transition-all placeholder:text-slate-400"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono uppercase text-slate-600 mb-1.5 font-semibold">
+                      Service Category
+                    </label>
+                    <select
+                      value={formData.subject}
+                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 transition-all"
+                    >
+                      <option value="General Inquiry">General Tech Inquiry</option>
+                      <option value="Printing Services">Commercial & 3D Printing</option>
+                      <option value="Graphics & Design">Graphics Design & Branding</option>
+                      <option value="Hardware Repairs">Hardware Repairs & Maintenance</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-mono uppercase text-slate-600 mb-1.5 font-semibold">
+                      Your Message
+                    </label>
+                    <textarea
+                      required
+                      rows={4}
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      placeholder="Tell us about your project requirements or printing specs..."
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 transition-all placeholder:text-slate-400 resize-none"
+                    />
+                  </div>
+
+                  <motion.button
+                    whileHover={{ scale: 1.015 }}
+                    whileTap={{ scale: 0.98 }}
+                    type="submit"
+                    className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white font-mono text-sm font-bold uppercase tracking-wider shadow-lg shadow-blue-500/25 flex items-center justify-center gap-2 transition-all cursor-pointer"
+                  >
+                    <Send className="w-4 h-4" />
+                    <span>Send Message</span>
+                    <Zap className="w-3.5 h-3.5 text-amber-300 fill-current ml-1" />
+                  </motion.button>
+                </form>
+              )}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </div>
   );
-  background-position: center 38%;
-  background-size: cover;
-  opacity: 0.83;
-}
+};
 
-.hero-overlay {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  background:
-    linear-gradient(
-      90deg,
-      #031333 0%,
-      #031333 34%,
-      rgba(3, 19, 51, 0.88) 46%,
-      rgba(3, 19, 51, 0.25) 75%,
-      rgba(3, 19, 51, 0.12) 100%
-    ),
-    linear-gradient(
-      0deg,
-      rgba(0, 165, 216, 0.12),
-      transparent 45%
-    );
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  width: min(560px, 62%);
-}
-
-.contact-eyebrow,
-.section-eyebrow,
-.form-eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #04d8ff;
-  font-size: 12px;
-  font-weight: 850;
-  letter-spacing: 0.6px;
-}
-
-.contact-eyebrow > span,
-.eyebrow-line {
-  display: inline-block;
-  width: 35px;
-  height: 3px;
-  flex-shrink: 0;
-  background: var(--cyan-blue);
-}
-
-.hero-content h1 {
-  margin: 16px 0 12px;
-  color: #fff;
-  font-size: clamp(43px, 5.5vw, 72px);
-  font-weight: 900;
-  line-height: 1.03;
-  letter-spacing: -3px;
-}
-
-.hero-content h1 > span {
-  color: #04c8ed;
-}
-
-.hero-content h1 > b {
-  color: var(--bright-red);
-}
-
-.hero-content > p {
-  max-width: 465px;
-  margin: 0;
-  color: #e1eafa;
-  font-size: 15px;
-  line-height: 1.75;
-}
-
-.hero-shortcuts {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 18px;
-  margin-top: 22px;
-}
-
-.hero-shortcuts > a {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  color: #f0f6ff;
-  font-size: 11px;
-  font-weight: 650;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.hero-shortcuts > a:hover {
-  color: #04d8ff;
-}
-
-.shortcut-icon {
-  display: grid;
-  place-items: center;
-  width: 43px;
-  height: 43px;
-  flex-shrink: 0;
-  color: #05d4ff;
-  border: 2px solid var(--cyan-blue);
-  border-radius: 50%;
-  background: rgba(0, 165, 216, 0.08);
-  box-shadow: inset 0 0 15px rgba(0, 165, 216, 0.08);
-}
-
-.hero-message {
-  position: absolute;
-  top: 26%;
-  right: 8%;
-  display: flex;
-  flex-direction: column;
-  color: white;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(23px, 3vw, 40px);
-  font-style: italic;
-  line-height: 1.15;
-  transform: rotate(-7deg);
-  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
-}
-
-.hero-message span:nth-child(2) {
-  margin-left: 20px;
-}
-
-.hero-message b {
-  color: #04d8ff;
-  font-weight: 500;
-}
-
-.hero-message i {
-  width: 145px;
-  height: 5px;
-  margin: 12px 0 0 26px;
-  border-radius: 100%;
-  background: var(--bright-red);
-  transform: rotate(-12deg);
-}
-
-.hero-dots {
-  position: absolute;
-  top: 18px;
-  right: 3%;
-  color: #00d7ff;
-  font-size: 14px;
-  line-height: 1.05;
-  letter-spacing: 5px;
-  opacity: 0.9;
-  transform: rotate(5deg);
-}
-
-/* MAIN CONTACT LAYOUT */
-
-.contact-main {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
-  align-items: stretch;
-  gap: 22px;
-  padding: 22px 6.5% 30px;
-  background:
-    radial-gradient(
-      ellipse at 50% 0%,
-      rgba(0, 165, 216, 0.06),
-      transparent 65%
-    ),
-    var(--navy);
-}
-
-.contact-details-card,
-.contact-form-card {
-  min-width: 0;
-  border-radius: 17px;
-  overflow: hidden;
-}
-
-.contact-details-card {
-  padding: 27px 30px 23px;
-  border: 1px solid #00d5ff;
-  background:
-    radial-gradient(
-      ellipse at 100% 100%,
-      rgba(0, 165, 216, 0.13),
-      transparent 45%
-    ),
-    linear-gradient(145deg, #071d42, #031333 75%);
-  box-shadow:
-    0 0 0 1px rgba(0, 165, 216, 0.12),
-    0 8px 30px rgba(0, 165, 216, 0.07);
-}
-
-.section-eyebrow {
-  font-size: 10px;
-}
-
-.contact-details-card h2,
-.contact-form-card h2 {
-  margin: 7px 0 5px;
-  font-size: clamp(25px, 2.6vw, 34px);
-  font-weight: 850;
-  line-height: 1.15;
-  letter-spacing: -1px;
-}
-
-.card-intro {
-  margin: 0 0 20px;
-  color: #d2def4;
-  font-size: 13px;
-  line-height: 1.65;
-}
-
-.contact-method {
-  display: flex;
-  align-items: flex-start;
-  gap: 13px;
-  margin: 19px 0;
-}
-
-.method-icon {
-  display: grid;
-  place-items: center;
-  width: 43px;
-  height: 43px;
-  flex: 0 0 43px;
-  color: white;
-  border: 2px solid var(--cyan-blue);
-  border-radius: 50%;
-  background:
-    linear-gradient(
-      135deg,
-      rgba(0, 165, 216, 0.32),
-      rgba(60, 49, 159, 0.45)
-    );
-  box-shadow: inset 0 0 10px rgba(0, 165, 216, 0.13);
-}
-
-.contact-method > div:last-child {
-  min-width: 0;
-}
-
-.contact-method h3 {
-  margin: 2px 0 4px;
-  color: white;
-  font-size: 13px;
-  font-weight: 800;
-}
-
-.contact-method p,
-.contact-method > div > a {
-  display: block;
-  margin: 0;
-  color: #dce7fa;
-  font-size: 12px;
-  line-height: 1.6;
-  text-decoration: none;
-  overflow-wrap: anywhere;
-}
-
-.contact-method > div > a:hover,
-.map-link:hover {
-  color: #04d8ff;
-}
-
-.contact-method .map-link {
-  display: inline-block;
-  margin-top: 5px;
-  color: #03c8f0;
-  font-size: 11px;
-  font-weight: 750;
-}
-
-.department-divider {
-  height: 1px;
-  margin: 18px 0;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 165, 216, 0.8),
-    rgba(0, 165, 216, 0.1)
-  );
-}
-
-.department-heading {
-  margin-bottom: 12px;
-}
-
-.department-heading p {
-  color: #b9cce8;
-}
-
-.department-list {
-  display: grid;
-  gap: 5px;
-  padding-left: 56px;
-}
-
-.department-item {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 6px 0;
-  color: #05d8ff !important;
-  text-decoration: none;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.department-item:hover {
-  color: #fff !important;
-  transform: translateX(4px);
-}
-
-.department-item > span:nth-child(2) {
-  display: grid;
-  gap: 3px;
-  min-width: 0;
-}
-
-.department-item strong {
-  color: #eaf2ff;
-  font-size: 12px;
-  font-weight: 650;
-}
-
-.department-item small {
-  color: #b8cbea;
-  font-size: 11px;
-  line-height: 1.45;
-  overflow-wrap: anywhere;
-}
-
-.department-arrow {
-  margin-left: auto;
-  color: #05d8ff;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.department-item:hover .department-arrow {
-  opacity: 1;
-}
-
-.response-note {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  margin-top: 19px;
-  padding-top: 17px;
-  border-top: 1px solid rgba(0, 165, 216, 0.55);
-  color: #00d8ff;
-}
-
-.response-note p {
-  margin: 0;
-  color: #d8e5fa;
-  font-size: 11px;
-  line-height: 1.6;
-}
-
-/* FORM CARD */
-
-.contact-form-card {
-  padding: 28px 27px 22px;
-  color: #112b58;
-  border: 1px solid #d5e7ff;
-  background:
-    radial-gradient(
-      ellipse at 100% 0%,
-      rgba(0, 165, 216, 0.1),
-      transparent 38%
-    ),
-    linear-gradient(145deg, #ffffff, #eef6ff);
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
-}
-
-.form-eyebrow {
-  color: #007ba8;
-  font-size: 10px;
-}
-
-.form-eyebrow .eyebrow-line {
-  width: 27px;
-  height: 3px;
-}
-
-.contact-form-card h2 {
-  color: #102957;
-}
-
-.contact-form-card h2 span {
-  color: #008fc8;
-}
-
-.form-intro {
-  margin: 10px 0 18px;
-  color: #506b96;
-  font-size: 13px;
-  line-height: 1.65;
-}
-
-.contact-form-card form {
-  display: grid;
-  gap: 10px;
-}
-
-.form-field {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  min-width: 0;
-  min-height: 54px;
-  padding: 9px 12px;
-  border: 1px solid #c6dcff;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.55);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.form-field:focus-within {
-  border-color: #00a5d8;
-  box-shadow: 0 0 0 3px rgba(0, 165, 216, 0.1);
-}
-
-.field-icon {
-  display: grid;
-  place-items: center;
-  flex: 0 0 28px;
-  color: #164d9d;
-}
-
-.field-content {
-  display: grid;
-  gap: 3px;
-  min-width: 0;
-  flex: 1;
-}
-
-.field-content > span {
-  color: #42618f;
-  font-size: 10px;
-  font-weight: 650;
-}
-
-.field-content > span b {
-  color: var(--bright-red);
-}
-
-.field-content input,
-.field-content select,
-.field-content textarea {
-  width: 100%;
-  min-width: 0;
-  padding: 2px 0;
-  border: 0;
-  outline: none;
-  color: #142e59;
-  background: transparent;
-  font-size: 12px;
-}
-
-.field-content input::placeholder,
-.field-content textarea::placeholder {
-  color: #91a8cb;
-  opacity: 1;
-}
-
-.field-content select {
-  cursor: pointer;
-}
-
-.field-content select:invalid {
-  color: #7890b5;
-}
-
-.field-content select option {
-  color: #142e59;
-  background: white;
-}
-
-.select-arrow {
-  display: grid;
-  place-items: center;
-  color: #17468d;
-  pointer-events: none;
-}
-
-.message-field {
-  align-items: flex-start;
-  min-height: 105px;
-}
-
-.message-field .field-icon {
-  padding-top: 4px;
-}
-
-.field-content textarea {
-  min-height: 70px;
-  resize: vertical;
-  line-height: 1.55;
-}
-
-.submit-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  width: 100%;
-  min-height: 47px;
-  margin-top: 3px;
-  padding: 12px 16px;
-  border: 0;
-  border-radius: 11px;
-  color: #fff;
-  background: linear-gradient(100deg, #f60400, #df0500);
-  box-shadow: 0 6px 18px rgba(246, 4, 0, 0.17);
-  font-size: 12px;
-  font-weight: 800;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.submit-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(246, 4, 0, 0.25);
-}
-
-.submit-button > span {
-  font-size: 20px;
-}
-
-.form-feedback {
-  margin: 0;
-  padding: 10px;
-  border: 1px solid #8adbb4;
-  border-radius: 8px;
-  color: #145b39;
-  background: #eafff2;
-  font-size: 12px;
-  line-height: 1.6;
-}
-
-.privacy-note {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 7px;
-  margin: 4px 0 0;
-  color: #55739d;
-  font-size: 10px;
-  line-height: 1.5;
-  text-align: center;
-}
-
-.privacy-note > span {
-  color: #1970bc;
-  font-size: 13px;
-}
-
-/* SERVICE STRIP */
-
-.service-strip {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1.35fr repeat(4, minmax(0, 1fr));
-  align-items: center;
-  gap: 20px;
-  padding: 25px 6.5%;
-  overflow: hidden;
-  border-top: 1px solid rgba(0, 165, 216, 0.35);
-  border-bottom: 1px solid rgba(0, 165, 216, 0.35);
-  background:
-    radial-gradient(
-      ellipse at 100% 50%,
-      rgba(0, 165, 216, 0.12),
-      transparent 30%
-    ),
-    #061737;
-}
-
-.service-tagline {
-  padding-right: 18px;
-  border-right: 1px solid rgba(0, 165, 216, 0.55);
-}
-
-.service-tagline h2 {
-  margin: 0;
-  color: #f4f7ff;
-  font-size: 17px;
-  line-height: 1.45;
-}
-
-.service-tagline p {
-  margin: 7px 0 0;
-  color: #05d8ff;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 18px;
-  font-style: italic;
-}
-
-.service-item {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  min-width: 0;
-}
-
-.service-icon {
-  display: grid;
-  place-items: center;
-  flex: 0 0 46px;
-  width: 46px;
-  height: 46px;
-  border: 2px solid #125cb2;
-  border-right-color: #00d8ff;
-  border-radius: 50%;
-  color: #fff;
-  background: rgba(0, 165, 216, 0.06);
-}
-
-.service-item > span:last-child {
-  display: grid;
-  gap: 5px;
-  min-width: 0;
-}
-
-.service-item strong {
-  color: #edf4ff;
-  font-size: 11px;
-  font-weight: 750;
-}
-
-.service-item small {
-  color: #b7c9e8;
-  font-size: 10px;
-  line-height: 1.4;
-}
-
-/* FOOTER */
-
-.contact-footer {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  min-height: 72px;
-  padding: 17px 6.5%;
-  background: #03102a;
-}
-
-.footer-logo {
-  color: #fff;
-  font-size: 24px;
-  font-weight: 850;
-  letter-spacing: -1px;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.footer-divider {
-  width: 1px;
-  height: 28px;
-  background: rgba(0, 165, 216, 0.6);
-}
-
-.contact-footer > p {
-  margin: 0;
-  color: #b8c9e4;
-  font-size: 10px;
-}
-
-.footer-links {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-left: auto;
-}
-
-.footer-links a {
-  display: grid;
-  place-items: center;
-  min-width: 25px;
-  height: 25px;
-  color: #f4f7ff;
-  font-size: 12px;
-  font-weight: 800;
-  text-decoration: none;
-  transition: color 0.2s ease, transform 0.2s ease;
-}
-
-.footer-links a:hover {
-  color: #04d8ff;
-  transform: translateY(-2px);
-}
-
-/* TABLET */
-
-@media (max-width: 1050px) {
-  .contact-navbar {
-    padding-inline: 4%;
-  }
-
-  .contact-navigation {
-    gap: 20px;
-  }
-
-  .contact-main {
-    padding-inline: 4%;
-    gap: 16px;
-  }
-
-  .contact-details-card {
-    padding: 23px 20px;
-  }
-
-  .contact-form-card {
-    padding: 24px 20px;
-  }
-
-  .department-list {
-    padding-left: 0;
-  }
-
-  .service-strip {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 20px;
-    padding-inline: 4%;
-  }
-
-  .service-tagline {
-    grid-column: 1 / -1;
-    padding: 0 0 15px;
-    border-right: 0;
-    border-bottom: 1px solid rgba(0, 165, 216, 0.4);
-  }
-}
-
-/* SMALL TABLETS AND MOBILE */
-
-@media (max-width: 760px) {
-  .contact-navbar {
-    min-height: 70px;
-    padding: 10px 5%;
-  }
-
-  .contact-menu-toggle {
-    display: flex;
-    flex-shrink: 0;
-  }
-
-  .contact-navigation {
-    position: absolute;
-    top: calc(100% + 1px);
-    left: 0;
-    right: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 4px;
-    max-height: 0;
-    padding: 0 5%;
-    overflow: hidden;
-    visibility: hidden;
-    opacity: 0;
-    background: #031333;
-    border-bottom: 1px solid rgba(0, 165, 216, 0.6);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-    transition:
-      max-height 0.3s ease,
-      opacity 0.2s ease,
-      padding 0.3s ease,
-      visibility 0.3s ease;
-  }
-
-  .contact-navigation.menu-open {
-    max-height: 420px;
-    padding: 14px 5% 22px;
-    visibility: visible;
-    opacity: 1;
-  }
-
-  .contact-navigation > a:not(.nav-contact-button) {
-    padding: 13px 10px;
-    border-radius: 8px;
-  }
-
-  .contact-navigation > a:not(.nav-contact-button):hover {
-    background: rgba(0, 165, 216, 0.1);
-  }
-
-  .contact-navigation > a:not(.nav-contact-button)::after {
-    display: none;
-  }
-
-  .nav-contact-button {
-    margin-top: 8px;
-    padding: 14px;
-  }
-
-  .contact-hero {
-    min-height: auto;
-    padding: 45px 6% 40px;
-  }
-
-  .hero-photo {
-    inset: 0;
-    background-position: center;
-    opacity: 0.48;
-  }
-
-  .hero-overlay {
-    background: linear-gradient(
-      90deg,
-      rgba(3, 19, 51, 0.98),
-      rgba(3, 19, 51, 0.83)
-    );
-  }
-
-  .hero-content {
-    width: 100%;
-    max-width: 560px;
-  }
-
-  .hero-content h1 {
-    font-size: clamp(43px, 9vw, 62px);
-    letter-spacing: -2px;
-  }
-
-  .hero-content > p {
-    max-width: 500px;
-  }
-
-  .hero-message {
-    top: 15px;
-    right: 5%;
-    font-size: 22px;
-    opacity: 0.7;
-  }
-
-  .hero-message i {
-    width: 80px;
-  }
-
-  .hero-dots {
-    display: none;
-  }
-
-  .hero-shortcuts {
-    gap: 13px;
-  }
-
-  .hero-shortcuts > a {
-    font-size: 11px;
-  }
-
-  .shortcut-icon {
-    width: 39px;
-    height: 39px;
-  }
-
-  .contact-main {
-    grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 22px 5% 28px;
-  }
-
-  .contact-details-card,
-  .contact-form-card {
-    padding: 25px;
-  }
-
-  .contact-details-card h2,
-  .contact-form-card h2 {
-    font-size: 30px;
-  }
-
-  .department-list {
-    padding-left: 10px;
-  }
-
-  .service-strip {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 22px 15px;
-    padding: 24px 5%;
-  }
-
-  .service-tagline {
-    grid-column: 1 / -1;
-  }
-
-  .contact-footer {
-    flex-wrap: wrap;
-    gap: 13px;
-    padding: 20px 5%;
-  }
-
-  .footer-links {
-    gap: 8px;
-  }
-}
-
-/* SMALL PHONES */
-
-@media (max-width: 420px) {
-  .brand-mark {
-    width: 37px;
-    height: 37px;
-    font-size: 28px;
-  }
-
-  .brand-word {
-    font-size: 22px;
-  }
-
-  .contact-hero {
-    padding: 38px 5% 32px;
-  }
-
-  .contact-eyebrow {
-    font-size: 10px;
-  }
-
-  .hero-content h1 {
-    font-size: clamp(39px, 10vw, 48px);
-    letter-spacing: -1.8px;
-  }
-
-  .hero-content > p {
-    font-size: 13px;
-    line-height: 1.8;
-  }
-
-  .hero-message {
-    display: none;
-  }
-
-  .hero-shortcuts {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .hero-shortcuts > a {
-    font-size: 12px;
-  }
-
-  .contact-main {
-    padding-inline: 4%;
-  }
-
-  .contact-details-card,
-  .contact-form-card {
-    padding: 21px 16px;
-    border-radius: 14px;
-  }
-
-  .contact-details-card h2,
-  .contact-form-card h2 {
-    font-size: 27px;
-  }
-
-  .card-intro,
-  .form-intro {
-    font-size: 12px;
-  }
-
-  .department-item {
-    gap: 9px;
-  }
-
-  .department-item small {
-    font-size: 10px;
-  }
-
-  .form-field {
-    gap: 9px;
-    padding-inline: 9px;
-  }
-
-  .field-icon {
-    flex-basis: 24px;
-  }
-
-  .field-icon svg {
-    width: 21px;
-    height: 21px;
-  }
-
-  .service-strip {
-    gap: 20px 10px;
-  }
-
-  .service-item {
-    gap: 8px;
-  }
-
-  .service-icon {
-    width: 38px;
-    height: 38px;
-    flex-basis: 38px;
-  }
-
-  .service-icon svg {
-    width: 21px;
-    height: 21px;
-  }
-
-  .service-item small {
-    font-size: 9px;
-  }
-
-  .contact-footer {
-    justify-content: center;
-    text-align: center;
-  }
-
-  .contact-footer > p {
-    width: 100%;
-    order: 3;
-  }
-
-  .footer-divider {
-    height: 22px;
-  }
-
-  .footer-links {
-    margin-left: 0;
-  }
-}
-
-/* ACCESSIBILITY */
-
-@media (prefers-reduced-motion: reduce) {
-  .contact-page *,
-  .contact-page *::before,
-  .contact-page *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
+export default ContactPage;
