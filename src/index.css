@@ -1,1 +1,6 @@
 @import "tailwindcss";
+/* Force override Tailwind's default solid border behavior under headers/navbars */
+header, nav, header *, nav * {
+  border-bottom-color: transparent !important;
+  border-bottom-width: 0 !important;
+}

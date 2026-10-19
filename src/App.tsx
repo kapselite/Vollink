@@ -42,11 +42,7 @@ export function App() {
         {currentView === 'home' && <Home />}
 
         {/* Render About Page */}
-        {currentView === 'about' && (
-          <section className="py-10">
-            <AboutUs />
-          </section>
-        )}
+        {currentView === 'about' && <AboutUs /> }
 
         {/* Render Contact Page */}
         {currentView === 'contact' && <Contact />}

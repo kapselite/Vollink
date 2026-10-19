@@ -24,13 +24,13 @@ const defaultLinks: NavLink[] = [
 export const Navbar: React.FC<NavbarProps> = ({ 
   brandName = 'Vollink', 
   links = defaultLinks,
-  logoSrc = logoImage // Uses the properly imported module as default
+  logoSrc = logoImage 
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [imageError, setImageError] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full backdrop-blur-2xl bg-white/85 border-b border-indigo-100/60 shadow-lg shadow-indigo-950/5 overflow-hidden">
+    <header className="sticky top-0 z-50 w-full backdrop-blur-2xl bg-white/85 overflow-hidden">
       
       {/* Moving Background Glow Light Line Across the Navbar Top */}
       <motion.div

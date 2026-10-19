@@ -77,18 +77,18 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.1,
+      staggerChildren: 0.1,
+      delayChildren: 0.05,
     },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 25 },
+  hidden: { opacity: 0, y: 20 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" }
+    transition: { duration: 0.4, ease: "easeOut" }
   },
 };
 
@@ -106,7 +106,15 @@ export const AboutUs: React.FC<AboutUsProps> = ({
   };
 
   return (
-    <div className="relative min-h-screen bg-slate-50 text-slate-800 overflow-hidden selection:bg-[#00a5d8] selection:text-white flex flex-col justify-between">
+    <div className="relative w-full bg-slate-50 text-slate-800 overflow-hidden selection:bg-[#00a5d8] selection:text-white">
+
+      {/* ================= SCOPED CSS TO REMOVE NAV/HEADER BOTTOM BORDER ON THIS PAGE ================= */}
+      <style>{`
+        nav, header, .navbar, [class*="nav"] {
+          border-bottom: none !important;
+          box-shadow: none !important;
+        }
+      `}</style>
 
       {/* ================= RICH GRAPHICAL BACKGROUND & DYNAMIC ANIMATED LAYERS ================= */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -156,25 +164,25 @@ export const AboutUs: React.FC<AboutUsProps> = ({
         <motion.div 
           animate={{ rotate: 360 }}
           transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
-          className="absolute top-24 left-1/2 -translate-x-1/2 w-[950px] h-[950px] border border-dashed border-indigo-200/50 rounded-full pointer-events-none"
+          className="absolute top-12 left-1/2 -translate-x-1/2 w-[850px] h-[850px] border border-dashed border-indigo-200/50 rounded-full pointer-events-none"
         />
         <motion.div 
           animate={{ rotate: -360 }}
           transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-          className="absolute top-44 left-1/2 -translate-x-1/2 w-[700px] h-[700px] border border-sky-200/40 rounded-full pointer-events-none"
+          className="absolute top-28 left-1/2 -translate-x-1/2 w-[650px] h-[650px] border border-sky-200/40 rounded-full pointer-events-none"
         />
 
         {/* Dynamic Graphic Floating Particles / Vector Nodes */}
         <motion.div
-          animate={{ y: [0, -20, 0], rotate: [0, 15, 0] }}
+          animate={{ y: [0, -15, 0], rotate: [0, 15, 0] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-36 left-[10%] w-8 h-8 rounded-lg bg-gradient-to-br from-[#00a5d8]/20 to-[#3c319f]/20 backdrop-blur-sm border border-[#00a5d8]/30 flex items-center justify-center text-[#00a5d8]"
+          className="absolute top-20 left-[10%] w-8 h-8 rounded-lg bg-gradient-to-br from-[#00a5d8]/20 to-[#3c319f]/20 backdrop-blur-sm border border-[#00a5d8]/30 flex items-center justify-center text-[#00a5d8]"
         >
           <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6-4.8-6 4.8 2.4-7.2-6-4.8h7.6z"/></svg>
         </motion.div>
 
         <motion.div
-          animate={{ y: [0, 25, 0], rotate: [0, -20, 0] }}
+          animate={{ y: [0, 20, 0], rotate: [0, -20, 0] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
           className="absolute top-1/2 right-[8%] w-10 h-10 rounded-full bg-gradient-to-tr from-[#f60400]/20 to-[#3c319f]/20 backdrop-blur-sm border border-[#f60400]/30 flex items-center justify-center text-[#f60400]"
         >
@@ -182,7 +190,7 @@ export const AboutUs: React.FC<AboutUsProps> = ({
         </motion.div>
 
         <motion.div
-          animate={{ y: [0, -30, 0], x: [0, 15, 0] }}
+          animate={{ y: [0, -20, 0], x: [0, 15, 0] }}
           transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2 }}
           className="absolute bottom-1/4 left-[5%] w-12 h-12 rounded-2xl bg-gradient-to-br from-[#00a5d8]/15 to-[#f60400]/15 backdrop-blur-sm border border-indigo-200/40 flex items-center justify-center text-[#3c319f]"
         >
@@ -190,53 +198,53 @@ export const AboutUs: React.FC<AboutUsProps> = ({
         </motion.div>
       </div>
 
-      <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 space-y-20 sm:space-y-28 z-10 w-full flex-grow">
+      <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 sm:pt-4 pb-12 sm:pb-16 space-y-12 sm:space-y-16 z-10 w-full">
         
         {/* ================= HERO HEADER WITH CLEAN LOGO (NO WHITE BG) ================= */}
         <motion.div 
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center space-y-8 flex flex-col items-center"
+          transition={{ duration: 0.6 }}
+          className="text-center space-y-5 flex flex-col items-center pt-2"
         >
           {/* Logo as raw image without background card, with layered backlight glow */}
           <motion.div
-            initial={{ scale: 0.85, opacity: 0 }}
+            initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             className="relative group cursor-pointer"
           >
             {/* Ambient Backlight Glow Effect Behind Logo */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#00a5d8]/30 via-[#3c319f]/30 to-[#f60400]/30 rounded-full blur-2xl opacity-40 group-hover:opacity-100 transition-opacity duration-500 transform scale-125" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#00a5d8]/30 via-[#3c319f]/30 to-[#f60400]/30 rounded-full blur-2xl opacity-40 group-hover:opacity-100 transition-opacity duration-500 transform scale-110" />
             
             {/* Animated Ring Accent around Floating Logo */}
             <motion.div 
               animate={{ rotate: 360 }}
               transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-              className="absolute -inset-4 border border-dashed border-[#00a5d8]/30 rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              className="absolute -inset-3 border border-dashed border-[#00a5d8]/30 rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
             />
 
             <motion.img 
-              whileHover={{ scale: 1.05, rotate: [0, -1, 1, 0] }}
-              transition={{ duration: 0.4 }}
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.3 }}
               src={logoUrl} 
               alt={logoAlt} 
-              className="relative h-24 sm:h-48 md:h-56 max-w-xs sm:max-w-md object-contain drop-shadow-2xl"
+              className="relative h-20 sm:h-36 md:h-40 max-w-xs sm:max-w-md object-contain drop-shadow-xl"
             />
           </motion.div>
 
-          <div className="space-y-5 max-w-3xl relative">
+          <div className="space-y-3 max-w-3xl relative">
             {/* Decorative CMYK / Design Registration Accent Dots */}
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#00a5d8] animate-pulse" />
-              <span className="w-2.5 h-2.5 rounded-full bg-[#f60400] animate-pulse [animation-delay:200ms]" />
-              <span className="w-2.5 h-2.5 rounded-full bg-yellow-400 animate-pulse [animation-delay:400ms]" />
-              <span className="w-2.5 h-2.5 rounded-full bg-[#3c319f] animate-pulse [animation-delay:600ms]" />
+            <div className="flex items-center justify-center gap-2 mb-1">
+              <span className="w-2 h-2 rounded-full bg-[#00a5d8] animate-pulse" />
+              <span className="w-2 h-2 rounded-full bg-[#f60400] animate-pulse [animation-delay:200ms]" />
+              <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse [animation-delay:400ms]" />
+              <span className="w-2 h-2 rounded-full bg-[#3c319f] animate-pulse [animation-delay:600ms]" />
             </div>
 
             <motion.span 
-              whileHover={{ scale: 1.05 }}
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold tracking-widest uppercase text-white bg-gradient-to-r from-[#3c319f] via-indigo-600 to-[#00a5d8] shadow-lg shadow-indigo-500/25 border border-white/40"
+              whileHover={{ scale: 1.03 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase text-white bg-gradient-to-r from-[#3c319f] via-indigo-600 to-[#00a5d8] shadow-md shadow-indigo-500/20 border border-white/40"
             >
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
@@ -244,7 +252,7 @@ export const AboutUs: React.FC<AboutUsProps> = ({
               Technology, Printing & Graphics Design
             </motion.span>
             
-            <p className="max-w-2xl mx-auto text-lg sm:text-xl text-slate-600 font-normal leading-relaxed">
+            <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-600 font-normal leading-relaxed">
               Your premier partner for integrated printer, printing products, IT infrastructure, and cutting-edge design solutions under one roof.
             </p>
           </div>
@@ -252,43 +260,43 @@ export const AboutUs: React.FC<AboutUsProps> = ({
           {/* Animated Line Accent */}
           <motion.div 
             initial={{ width: 0 }}
-            animate={{ width: "140px" }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="h-1.5 bg-gradient-to-r from-[#00a5d8] via-[#3c319f] to-[#f60400] rounded-full shadow-md" 
+            animate={{ width: "120px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="h-1 bg-gradient-to-r from-[#00a5d8] via-[#3c319f] to-[#f60400] rounded-full shadow-sm" 
           />
         </motion.div>
 
         {/* ================= WHO ARE WE ================= */}
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="relative bg-white/85 backdrop-blur-2xl rounded-3xl p-8 sm:p-12 shadow-2xl shadow-slate-200/80 border border-white/80 overflow-hidden group hover:shadow-indigo-200/50 transition-all duration-300"
+          transition={{ duration: 0.6 }}
+          className="relative bg-white/85 backdrop-blur-2xl rounded-3xl p-6 sm:p-10 shadow-xl shadow-slate-200/70 border border-white/80 overflow-hidden group hover:shadow-indigo-200/40 transition-all duration-300"
         >
           {/* Top colored gradient border */}
-          <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-[#3c319f] via-[#00a5d8] to-[#f60400]" />
-          <div className="absolute left-0 top-0 w-2.5 h-full bg-[#00a5d8]" />
+          <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-[#3c319f] via-[#00a5d8] to-[#f60400]" />
+          <div className="absolute left-0 top-0 w-2 h-full bg-[#00a5d8]" />
 
           {/* Graphical Crop / Printing Crosshair Accents */}
           <div className="absolute top-4 right-4 text-slate-300 pointer-events-none">
-            <svg className="w-8 h-8 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg className="w-7 h-7 opacity-40" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <circle cx="12" cy="12" r="6" strokeWidth="1"/>
               <path strokeWidth="1" d="M12 2v4m0 12v4M2 12h4m12 0h4"/>
             </svg>
           </div>
 
-          <div className="relative z-10 space-y-6">
-            <div className="flex items-center gap-3">
-              <span className="w-3.5 h-3.5 rounded-full bg-[#f60400] animate-pulse" />
+          <div className="relative z-10 space-y-4">
+            <div className="flex items-center gap-2.5">
+              <span className="w-3 h-3 rounded-full bg-[#f60400] animate-pulse" />
               <span className="text-xs uppercase tracking-widest font-extrabold text-[#3c319f]">Company Overview</span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#3c319f] tracking-tight">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#3c319f] tracking-tight">
               WHO ARE WE?
             </h2>
 
-            <div className="space-y-4 text-slate-700 leading-relaxed text-base sm:text-lg font-normal">
+            <div className="space-y-3 text-slate-700 leading-relaxed text-base font-normal">
               <p>
                 Vollink (Pvt) Ltd is a registered company in compliance with the Zimbabwe Companies Act [Chapter 24:03]. Currently, it stands as one of the leading names in the provision of printer, printing, graphic designing, and IT products and services.
               </p>
@@ -300,47 +308,47 @@ export const AboutUs: React.FC<AboutUsProps> = ({
         </motion.div>
 
         {/* ================= VISION & MISSION ================= */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
           
           {/* Vision */}
           <motion.div 
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            whileHover={{ y: -6 }}
-            className="bg-white/90 backdrop-blur-xl rounded-3xl p-8 sm:p-10 shadow-xl shadow-slate-200/70 border border-white flex flex-col justify-between group relative overflow-hidden"
+            transition={{ duration: 0.5 }}
+            whileHover={{ y: -4 }}
+            className="bg-white/90 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-lg shadow-slate-200/60 border border-white flex flex-col justify-between group relative overflow-hidden"
           >
-            <div className="absolute top-0 right-0 w-36 h-36 bg-gradient-to-bl from-[#00a5d8]/15 to-transparent rounded-bl-full pointer-events-none" />
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#00a5d8]/15 to-transparent rounded-bl-full pointer-events-none" />
 
             {/* Graphical Background Node Decor */}
             <div className="absolute bottom-4 right-4 opacity-10 text-[#00a5d8] pointer-events-none">
-              <svg className="w-24 h-24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+              <svg className="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
             </div>
 
-            <div className="space-y-6 relative z-10">
+            <div className="space-y-5 relative z-10">
               <div className="flex items-center justify-between">
                 <motion.div 
-                  whileHover={{ rotate: 15, scale: 1.1 }}
-                  className="w-14 h-14 rounded-2xl bg-[#00a5d8]/10 border border-[#00a5d8]/20 flex items-center justify-center text-[#00a5d8] group-hover:bg-[#00a5d8] group-hover:text-white transition-all duration-300 shadow-md"
+                  whileHover={{ rotate: 15, scale: 1.05 }}
+                  className="w-12 h-12 rounded-2xl bg-[#00a5d8]/10 border border-[#00a5d8]/20 flex items-center justify-center text-[#00a5d8] group-hover:bg-[#00a5d8] group-hover:text-white transition-all duration-300 shadow-sm"
                 >
-                  <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                   </svg>
                 </motion.div>
-                <span className="text-xs font-bold text-[#00a5d8] bg-sky-50 px-3.5 py-1.5 rounded-full border border-sky-100 uppercase tracking-widest">
+                <span className="text-xs font-bold text-[#00a5d8] bg-sky-50 px-3 py-1 rounded-full border border-sky-100 uppercase tracking-widest">
                   Vision
                 </span>
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-[#3c319f]">Our Vision</h3>
-              <p className="text-slate-600 leading-relaxed font-normal text-base sm:text-lg">
+              <h3 className="text-2xl font-extrabold text-[#3c319f]">Our Vision</h3>
+              <p className="text-slate-600 leading-relaxed font-normal text-base">
                 We commit ourselves to becoming the most preferred provider of IT, printer, and printing products and services throughout Zimbabwe and the Sub-Saharan region.
               </p>
             </div>
 
-            <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-semibold relative z-10">
+            <div className="mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-semibold relative z-10">
               <span>TARGET REGION</span>
               <span className="text-[#00a5d8]">Zimbabwe & Sub-Saharan Region</span>
             </div>
@@ -348,59 +356,59 @@ export const AboutUs: React.FC<AboutUsProps> = ({
 
           {/* Mission */}
           <motion.div 
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            whileHover={{ y: -6 }}
-            className="bg-white/90 backdrop-blur-xl rounded-3xl p-8 sm:p-10 shadow-xl shadow-slate-200/70 border border-white flex flex-col justify-between group relative overflow-hidden"
+            transition={{ duration: 0.5 }}
+            whileHover={{ y: -4 }}
+            className="bg-white/90 backdrop-blur-xl rounded-3xl p-6 sm:p-8 shadow-lg shadow-slate-200/60 border border-white flex flex-col justify-between group relative overflow-hidden"
           >
-            <div className="absolute top-0 right-0 w-36 h-36 bg-gradient-to-bl from-[#f60400]/15 to-transparent rounded-bl-full pointer-events-none" />
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#f60400]/15 to-transparent rounded-bl-full pointer-events-none" />
 
-            <div className="space-y-6 relative z-10">
+            <div className="space-y-5 relative z-10">
               <div className="flex items-center justify-between">
                 <motion.div 
-                  whileHover={{ rotate: -15, scale: 1.1 }}
-                  className="w-14 h-14 rounded-2xl bg-[#f60400]/10 border border-[#f60400]/20 flex items-center justify-center text-[#f60400] group-hover:bg-[#f60400] group-hover:text-white transition-all duration-300 shadow-md"
+                  whileHover={{ rotate: -15, scale: 1.05 }}
+                  className="w-12 h-12 rounded-2xl bg-[#f60400]/10 border border-[#f60400]/20 flex items-center justify-center text-[#f60400] group-hover:bg-[#f60400] group-hover:text-white transition-all duration-300 shadow-sm"
                 >
-                  <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                   </svg>
                 </motion.div>
-                <span className="text-xs font-bold text-[#f60400] bg-red-50 px-3.5 py-1.5 rounded-full border border-red-100 uppercase tracking-widest">
+                <span className="text-xs font-bold text-[#f60400] bg-red-50 px-3 py-1 rounded-full border border-red-100 uppercase tracking-widest">
                   Mission
                 </span>
               </div>
 
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-[#3c319f]">Our Mission</h3>
-              <p className="text-slate-600 font-medium text-sm sm:text-base">We aim to run a dynamic and vibrant business through:</p>
+              <h3 className="text-2xl font-extrabold text-[#3c319f]">Our Mission</h3>
+              <p className="text-slate-600 font-medium text-sm">We aim to run a dynamic and vibrant business through:</p>
 
-              <ul className="space-y-3 text-slate-700 text-sm sm:text-base font-normal">
+              <ul className="space-y-2.5 text-slate-700 text-sm font-normal">
                 <motion.li 
-                  whileHover={{ x: 5 }}
-                  className="flex items-start gap-3 transition-transform"
+                  whileHover={{ x: 4 }}
+                  className="flex items-start gap-2.5 transition-transform"
                 >
-                  <span className="w-2.5 h-2.5 mt-1.5 rounded-full bg-[#f60400] shrink-0 shadow-sm" />
+                  <span className="w-2 h-2 mt-1.5 rounded-full bg-[#f60400] shrink-0 shadow-sm" />
                   <span>Total commitment to excellence by getting things right the first time, all the time.</span>
                 </motion.li>
                 <motion.li 
-                  whileHover={{ x: 5 }}
-                  className="flex items-start gap-3 transition-transform"
+                  whileHover={{ x: 4 }}
+                  className="flex items-start gap-2.5 transition-transform"
                 >
-                  <span className="w-2.5 h-2.5 mt-1.5 rounded-full bg-[#f60400] shrink-0 shadow-sm" />
+                  <span className="w-2 h-2 mt-1.5 rounded-full bg-[#f60400] shrink-0 shadow-sm" />
                   <span>Clearly understanding and satisfying customer needs affordably and sustainably.</span>
                 </motion.li>
                 <motion.li 
-                  whileHover={{ x: 5 }}
-                  className="flex items-start gap-3 transition-transform"
+                  whileHover={{ x: 4 }}
+                  className="flex items-start gap-2.5 transition-transform"
                 >
-                  <span className="w-2.5 h-2.5 mt-1.5 rounded-full bg-[#f60400] shrink-0 shadow-sm" />
+                  <span className="w-2 h-2 mt-1.5 rounded-full bg-[#f60400] shrink-0 shadow-sm" />
                   <span>Being more proactive, innovative, and pioneering than any competitor.</span>
                 </motion.li>
               </ul>
             </div>
 
-            <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-semibold relative z-10">
+            <div className="mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-semibold relative z-10">
               <span>APPROACH</span>
               <span className="text-[#f60400]">Dynamic & Vibrant</span>
             </div>
@@ -409,57 +417,57 @@ export const AboutUs: React.FC<AboutUsProps> = ({
         </div>
 
         {/* ================= CORE VALUES ================= */}
-        <div className="space-y-10">
-          <div className="text-center space-y-3">
-            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase text-white bg-[#f60400] shadow-md shadow-red-500/20">
+        <div className="space-y-8">
+          <div className="text-center space-y-2.5">
+            <span className="inline-block px-3.5 py-1 rounded-full text-xs font-bold tracking-widest uppercase text-white bg-[#f60400] shadow-sm shadow-red-500/20">
               Our Principles
             </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-[#3c319f]">Core Values</h2>
-            <p className="max-w-2xl mx-auto text-slate-600 text-sm sm:text-base font-normal">
+            <h2 className="text-2xl sm:text-4xl font-extrabold text-[#3c319f]">Core Values</h2>
+            <p className="max-w-2xl mx-auto text-slate-600 text-xs sm:text-sm font-normal">
               The values we subscribe to are a way of showing commitment to the culture we are in the process of instilling in all our stakeholders.
             </p>
-            <div className="w-16 h-1 bg-[#00a5d8] mx-auto rounded-full" />
+            <div className="w-12 h-1 bg-[#00a5d8] mx-auto rounded-full" />
           </div>
 
-          <div className="bg-white/80 backdrop-blur-xl border border-white rounded-3xl p-6 sm:p-8 shadow-xl shadow-slate-200/80 space-y-8 relative overflow-hidden">
+          <div className="bg-white/80 backdrop-blur-xl border border-white rounded-3xl p-5 sm:p-7 shadow-lg shadow-slate-200/70 space-y-6 relative overflow-hidden">
             
             {/* Interactive Animated Spotlight Card */}
-            <div className="relative overflow-hidden bg-gradient-to-r from-[#3c319f] via-indigo-900 to-slate-900 text-white rounded-2xl p-6 sm:p-8 shadow-xl">
+            <div className="relative overflow-hidden bg-gradient-to-r from-[#3c319f] via-indigo-900 to-slate-900 text-white rounded-2xl p-5 sm:p-7 shadow-lg">
               {/* Animated Floating Glow Blob inside Spotlight Card */}
               <motion.div 
-                animate={{ x: [0, 50, 0], opacity: [0.3, 0.6, 0.3] }}
+                animate={{ x: [0, 40, 0], opacity: [0.3, 0.6, 0.3] }}
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -right-10 -bottom-10 w-64 h-64 bg-[#00a5d8]/30 rounded-full blur-3xl pointer-events-none"
+                className="absolute -right-10 -bottom-10 w-56 h-56 bg-[#00a5d8]/30 rounded-full blur-3xl pointer-events-none"
               />
 
               <AnimatePresence mode="wait">
                 <motion.div 
                   key={activeValue}
-                  initial={{ opacity: 0, x: -20 }}
+                  initial={{ opacity: 0, x: -15 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  transition={{ duration: 0.3 }}
-                  className="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10"
+                  exit={{ opacity: 0, x: 15 }}
+                  transition={{ duration: 0.25 }}
+                  className="flex flex-col md:flex-row items-center justify-between gap-5 relative z-10"
                 >
-                  <div className="space-y-2 text-center md:text-left">
-                    <div className="flex items-center justify-center md:justify-start gap-3">
-                      <span className="text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-[#00a5d8] text-white shadow-md">
+                  <div className="space-y-1.5 text-center md:text-left">
+                    <div className="flex items-center justify-center md:justify-start gap-2.5">
+                      <span className="text-[11px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-[#00a5d8] text-white shadow-sm">
                         Core Value {coreValues[activeValue].number}
                       </span>
-                      <span className="text-xs text-indigo-200 uppercase tracking-wider font-semibold">Active Selection</span>
+                      <span className="text-[11px] text-indigo-200 uppercase tracking-wider font-semibold">Active Selection</span>
                     </div>
-                    <h3 className="text-2xl sm:text-3xl font-extrabold text-white">
+                    <h3 className="text-2xl font-extrabold text-white">
                       {coreValues[activeValue].title}
                     </h3>
-                    <p className="text-indigo-100 text-sm sm:text-base max-w-2xl font-normal leading-relaxed">
+                    <p className="text-indigo-100 text-sm max-w-2xl font-normal leading-relaxed">
                       {coreValues[activeValue].description}
                     </p>
                   </div>
 
                   <motion.div 
-                    whileHover={{ scale: 1.1, rotate: 360 }}
-                    transition={{ duration: 0.6 }}
-                    className="w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-2xl font-extrabold text-white shrink-0 shadow-inner"
+                    whileHover={{ scale: 1.05, rotate: 360 }}
+                    transition={{ duration: 0.5 }}
+                    className="w-14 h-14 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-xl font-extrabold text-white shrink-0 shadow-inner"
                   >
                     {coreValues[activeValue].number}
                   </motion.div>
@@ -473,7 +481,7 @@ export const AboutUs: React.FC<AboutUsProps> = ({
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
             >
               {coreValues.map((value, idx) => {
                 const isActive = activeValue === idx;
@@ -486,29 +494,29 @@ export const AboutUs: React.FC<AboutUsProps> = ({
                     role="button"
                     tabIndex={0}
                     aria-pressed={isActive}
-                    whileHover={{ y: -6, scale: 1.02 }}
+                    whileHover={{ y: -4, scale: 1.01 }}
                     whileTap={{ scale: 0.98 }}
-                    className={`p-5 rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col justify-between group focus:outline-none focus:ring-2 focus:ring-[#00a5d8] ${
+                    className={`p-4 rounded-2xl border transition-all duration-300 cursor-pointer flex flex-col justify-between group focus:outline-none focus:ring-2 focus:ring-[#00a5d8] ${
                       isActive 
                         ? 'bg-gradient-to-b from-sky-50 to-indigo-50/50 border-[#00a5d8] shadow-md shadow-sky-100 ring-2 ring-[#00a5d8]/20' 
-                        : 'bg-white border-slate-200/80 hover:border-slate-300 hover:shadow-md'
+                        : 'bg-white border-slate-200/80 hover:border-slate-300 hover:shadow-sm'
                     }`}
                   >
-                    <div className="space-y-3">
+                    <div className="space-y-2.5">
                       <div className="flex items-center justify-between">
-                        <span className={`w-9 h-9 rounded-xl font-black text-xs flex items-center justify-center shadow-sm transition-colors ${
+                        <span className={`w-8 h-8 rounded-xl font-black text-xs flex items-center justify-center shadow-sm transition-colors ${
                           isActive 
                             ? 'bg-[#f60400] text-white' 
                             : 'bg-indigo-50 text-[#3c319f] group-hover:bg-[#3c319f] group-hover:text-white'
                         }`}>
                           {value.number}
                         </span>
-                        <span className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                        <span className={`w-2 h-2 rounded-full transition-colors ${
                           isActive ? 'bg-[#00a5d8]' : 'bg-slate-300 group-hover:bg-[#00a5d8]'
                         }`} />
                       </div>
 
-                      <h4 className={`text-base font-bold transition-colors ${
+                      <h4 className={`text-sm font-bold transition-colors ${
                         isActive ? 'text-[#3c319f]' : 'text-slate-800 group-hover:text-[#3c319f]'
                       }`}>
                         {value.title}
@@ -519,7 +527,7 @@ export const AboutUs: React.FC<AboutUsProps> = ({
                       </p>
                     </div>
 
-                    <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-semibold text-slate-400">
+                    <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[10px] font-semibold text-slate-400">
                       <span>VOLLINK VALUE</span>
                       <span className={isActive ? 'text-[#00a5d8]' : 'text-slate-400'}>
                         {isActive ? 'Selected' : 'Click to view'}
@@ -532,61 +540,6 @@ export const AboutUs: React.FC<AboutUsProps> = ({
 
           </div>
         </div>
-
-        {/* ================= MANAGEMENT TEAM ================= */}
-        <div className="space-y-10">
-          <div className="text-center space-y-3">
-            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-bold tracking-widest uppercase text-white bg-[#3c319f] shadow-md shadow-indigo-500/20">
-              Leadership
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-[#3c319f]">The Management Team</h2>
-            <div className="w-16 h-1 bg-[#00a5d8] mx-auto rounded-full" />
-          </div>
-
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto"
-          >
-            {teamMembers.map((member, index) => (
-              <motion.div 
-                key={index}
-                variants={itemVariants}
-                whileHover={{ y: -8 }}
-                className="bg-white/95 backdrop-blur-xl rounded-3xl p-8 sm:p-10 shadow-xl shadow-slate-200/70 border border-white flex flex-col items-center text-center group relative overflow-hidden"
-              >
-                {/* Accent glow overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-b from-[#00a5d8]/5 via-transparent to-[#3c319f]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-
-                {/* Animated Avatar Frame with Rotating Gradient Border */}
-                <div className="relative mb-6">
-                  <motion.div 
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-                    className="absolute -inset-1.5 rounded-3xl bg-gradient-to-tr from-[#00a5d8] via-[#3c319f] to-[#f60400] opacity-75 blur-sm group-hover:opacity-100 transition-opacity"
-                  />
-                  
-                  <div className="relative w-24 h-24 rounded-3xl bg-gradient-to-tr from-[#00a5d8] via-[#3c319f] to-[#f60400] p-1 shadow-lg shadow-indigo-500/15 group-hover:scale-105 transition-transform duration-300">
-                    <div className="w-full h-full bg-white rounded-[22px] flex items-center justify-center text-[#3c319f]">
-                      <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-
-                <h3 className="text-2xl font-bold text-[#3c319f] mb-2 relative z-10">{member.name}</h3>
-                <p className="text-[#00a5d8] font-semibold text-base mb-4 relative z-10">{member.role}</p>
-                <p className="text-[#f60400] text-xs font-semibold bg-red-50 px-4 py-2 rounded-full border border-red-100 shadow-sm relative z-10">
-                  {member.qualification}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-
       </main>
     </div>
   );
