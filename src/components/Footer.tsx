@@ -26,14 +26,14 @@ const defaultLinks: FooterLink[] = [
 ];
 
 const services: FooterLink[] = [
-  { name: 'Graphic Designing', href: '#services' },
-  { name: 'Printing', href: '#services' },
-  { name: 'Signage & Branding', href: '#services' },
-  { name: 'T-Shirt Printing', href: '#services' },
-  { name: 'Promotional Gifts', href: '#services' },
-  { name: 'Cartridges, Printers & Copiers', href: '#services' },
-  { name: 'Printer Repair', href: '#services' },
-  { name: 'Computers & Accessories', href: '#services' },
+  { name: 'Graphic Designing', href: '#services/print-design/graphic-design' },
+  { name: 'Printing', href: '#services/print-design/printing' },
+  { name: 'Signage & Branding', href: '#services/print-design/signage' },
+  { name: 'T-Shirt Printing', href: '#services/print-design/t-shirt-printing' },
+  { name: 'Promotional Gifts', href: '#services/print-design/promotional-gifts' },
+  { name: 'Cartridges, Printers & Copiers', href: '#services/technology/cartridges' },
+  { name: 'Printer Repair', href: '#services/technology/printer-repair' },
+  { name: 'Computers & Accessories', href: '#services/technology/computers-accessories' },
 ];
 
 const emails: EmailContact[] = [
