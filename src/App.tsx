@@ -4,12 +4,16 @@ import { Footer } from './components/Footer';
 import { AboutUs } from './pages/AboutUs';
 import { ContactPage as Contact } from './pages/Contacts';
 import { Home } from './pages/Home';
+import { ServicesPage } from './pages/Services';
 import { parseHash, useHash } from './hooks/useHashRoute';
 
 export function App() {
   // Driven by address hash (e.g., #about, #print-design, #contact)
   const hash = useHash();
-  const { page, anchor } = parseHash(hash);
+  const route = parseHash(hash);
+  // Plain #services means the Services section of the Home page
+  const page = route.page === 'services' ? 'home' : route.page;
+  const anchor = route.page === 'services' ? route.anchor ?? 'services' : route.anchor;
   const previousPage = useRef(page);
 
   useEffect(() => {
@@ -46,6 +50,11 @@ export function App() {
         {/* Render Contact Page */}
         {page === 'contact' && (
             <Contact />
+        )}
+
+        {/* Render Services Pages (Printing & Design, Technology) */}
+        {(page === 'print-design' || page === 'technology') && (
+            <ServicesPage key={page} categoryId={page} />
         )}
       </main>
 
