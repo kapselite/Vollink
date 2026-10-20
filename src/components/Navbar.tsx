@@ -195,23 +195,26 @@ export const Navbar: React.FC<NavbarProps> = ({
   const activeName = activeLinkName(useHash());
 
   return (
-    <header className="sticky top-0 z-50 w-full backdrop-blur-2xl bg-white/85 overflow-hidden">
-      <motion.div
-        animate={{ x: ['-100%', '100%'] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
-        className="absolute top-0 left-0 w-1/2 h-[2px] bg-gradient-to-r from-transparent via-[#00a5d8] to-transparent pointer-events-none"
-      />
+    <header className="sticky top-0 z-50 w-full backdrop-blur-2xl bg-white/85">
+      {/* No overflow-hidden on the header: it would clip the Services dropdown. The glow layers are clipped here instead. */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          animate={{ x: ['-100%', '100%'] }}
+          transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+          className="absolute top-0 left-0 w-1/2 h-[2px] bg-gradient-to-r from-transparent via-[#00a5d8] to-transparent"
+        />
 
-      <motion.div
-        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3], x: [0, 50, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute -top-10 left-1/4 w-32 h-32 bg-indigo-400/10 rounded-full blur-2xl pointer-events-none"
-      />
-      <motion.div
-        animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3], x: [0, -40, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute -top-10 right-1/4 w-32 h-32 bg-cyan-400/10 rounded-full blur-2xl pointer-events-none"
-      />
+        <motion.div
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3], x: [0, 50, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -top-10 left-1/4 w-32 h-32 bg-indigo-400/10 rounded-full blur-2xl"
+        />
+        <motion.div
+          animate={{ scale: [1.2, 1, 1.2], opacity: [0.3, 0.5, 0.3], x: [0, -40, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute -top-10 right-1/4 w-32 h-32 bg-cyan-400/10 rounded-full blur-2xl"
+        />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex items-center justify-between h-20">
