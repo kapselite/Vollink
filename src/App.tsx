@@ -4,7 +4,6 @@ import { Footer } from './components/Footer';
 import { AboutUs } from './pages/AboutUs';
 import { ContactPage as Contact } from './pages/Contacts';
 import { Home } from './pages/Home';
-import { ServicesPage } from './pages/Services';
 import { parseHash, useHash } from './hooks/useHashRoute';
 
 export function App() {
@@ -47,11 +46,6 @@ export function App() {
         {/* Render Contact Page */}
         {page === 'contact' && (
             <Contact />
-        )}
-
-        {/* Render Services Pages */}
-        {page === 'services' && (
-            <ServicesPage />
         )}
       </main>
 

@@ -3,12 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import '../index.css';
 import logoImage from '../assets/logo.png';
 
-interface TeamMember {
-  name: string;
-  role: string;
-  qualification: string;
-}
-
 interface CoreValue {
   number: string;
   title: string;
@@ -19,19 +13,6 @@ interface AboutUsProps {
   logoUrl?: string;
   logoAlt?: string;
 }
-
-const teamMembers: TeamMember[] = [
-  {
-    name: 'Makoshori Isaac',
-    role: 'Business Development, Sales & Marketing',
-    qualification: 'BBA in Marketing (IMM)',
-  },
-  {
-    name: 'Tarisai Blessing Makoshori',
-    role: 'Administration',
-    qualification: 'BSC Hons in Science Education and Applications in Biology (UZ)',
-  },
-];
 
 const coreValues: CoreValue[] = [
   {
@@ -71,7 +52,7 @@ const coreValues: CoreValue[] = [
   },
 ];
 
-// Animation Stagger Variants
+// Animation Stagger Variants with explicit const assertions for Framer Motion ease types
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -81,7 +62,7 @@ const containerVariants = {
       delayChildren: 0.05,
     },
   },
-};
+} as const;
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -90,7 +71,7 @@ const itemVariants = {
     y: 0,
     transition: { duration: 0.4, ease: "easeOut" }
   },
-};
+} as const;
 
 export const AboutUs: React.FC<AboutUsProps> = ({ 
   logoUrl = logoImage, 

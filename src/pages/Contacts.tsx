@@ -188,7 +188,7 @@ export const ContactPage: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: 'out' }}
+          transition={{ duration: 0.7, ease: 'easeOut' }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
           <motion.div 
