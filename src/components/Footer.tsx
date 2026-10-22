@@ -43,10 +43,17 @@ const emails: EmailContact[] = [
   { label: 'General', address: 'vollinksales@gmail.com' },
 ];
 
-const phoneDisplay = '+263 773 732 447';
+// Main number, also used for the WhatsApp button
 const phoneNumber = '263773732447';
+
+const phones: { display: string; number: string }[] = [
+  { display: '+263 773 732 447', number: phoneNumber },
+  { display: '+263 713 827 881', number: '263713827881' },
+  { display: '+263 783 114 823', number: '263783114823' },
+];
+
 const mapsUrl =
-  'https://www.google.com/maps/search/?api=1&query=SecurityTrust+House+73+Kwame+Nkrumah+Avenue+Harare';
+  'https://www.google.com/maps/search/?api=1&query=Sanders+House+14+Street+Harare';
 
 // Shared column heading with the red underline accent used across the brand
 const ColumnHeading: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -167,24 +174,30 @@ export const Footer: React.FC<FooterProps> = ({
                     </svg>
                   </span>
                   <span className="leading-relaxed">
-                    1st Floor, Suite 3<br />
-                    SecurityTrust House<br />
-                    73 Kwame Nkrumah Avenue, Harare
+                    1st Floor, Suite 11<br />
+                    Sanders House<br />
+                    14 Street, Harare
                   </span>
                 </a>
               </li>
-              <li>
-                <a
-                  href={`tel:+${phoneNumber}`}
-                  className="flex items-center gap-3 hover:text-[#00a5d8] transition-colors duration-200"
-                >
-                  <span className="w-9 h-9 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-[#00a5d8] shrink-0">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </span>
-                  {phoneDisplay}
-                </a>
+              <li className="flex items-start gap-3">
+                <span className="w-9 h-9 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-[#00a5d8] shrink-0">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                  </svg>
+                </span>
+                <ul className="space-y-1.5 pt-2">
+                  {phones.map((phone) => (
+                    <li key={phone.number}>
+                      <a
+                        href={`tel:+${phone.number}`}
+                        className="hover:text-[#00a5d8] transition-colors duration-200"
+                      >
+                        {phone.display}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </li>
               <li className="flex items-start gap-3">
                 <span className="w-9 h-9 rounded-xl bg-white/10 border border-white/10 flex items-center justify-center text-[#00a5d8] shrink-0">
